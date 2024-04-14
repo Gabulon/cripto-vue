@@ -32,6 +32,16 @@ import {ref,onMounted} from 'vue'
                  {{ moneda.texto }}</option>
               </select>
           </div>
+          <div class="campo">
+            <label for="cripto">Criptomoneda:</label>
+            <select id="cripto">
+              <option value="">--Selecciona--</option>
+              <option v-for="criptomoneda in criptomonedas"
+               :value="criptomoneda.CoinInfo.Name">
+               {{ criptomoneda.CoinInfo.FullName }}</option>
+            </select>
+        </div>
+        <input type="submit" value="Cotizar"/>
       </form>
   </div>
 </template>
