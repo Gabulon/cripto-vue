@@ -1,5 +1,5 @@
 <script setup>
-import {ref,reactive,onMounted} from 'vue'
+import {ref,reactive,onMounted,computed} from 'vue'
 import Alerta from './components/Alerta.vue'
   const monedas = ref([
       { codigo: 'USD', texto: 'Dolar de Estados Unidos'},
@@ -41,6 +41,9 @@ import Alerta from './components/Alerta.vue'
       }
   }
 
+ const mostrarResultado = computed(() => {
+   return Object.values(cotizacion.value).length > 0
+ })
 </script>
 
 <template>
@@ -80,7 +83,7 @@ import Alerta from './components/Alerta.vue'
         </div>
         <input type="submit" value="Cotizar"/>
       </form>
-      <div class="contenedor-resultado">
+      <div v-if="mostrarResultado" class="contenedor-resultado">
           <h2>Cotización</h2>
           <div class="resultado">
               <img :src="'https://cryptocompare.com/'+ cotizacion.IMAGEURL" alt="imagen cripto">
